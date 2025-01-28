@@ -24,7 +24,7 @@
     "OWNER_NUMBER": {
       "description": "put your Number and name for Owner",
       "required": true,
-      "value": "9230926680000,❣️PRINCE THE DEVELOPER"
+      "value": "6281220527432,Prince♥️The Developer"
     },
     "MODE": {
       "description": "choose bot mode public or private",
@@ -39,7 +39,7 @@
     "antidelete": {
       "description": "Set 'private' to forward deleted messages only from private chats, 'all' to forward from both private and group chats, or 'false' to disable this feature.",
       "required": false,
-      "value": "false"
+      "value": "all"
     },
     "DATABASE_URL": {
       "description": "put mongodb or postgres or princedb database url for bots better performance",
@@ -49,7 +49,7 @@
     "ANTI_LINK": {
       "description": "it will dlt links and kick user",
       "required": false,
-      "value": "false"
+      "value": "true"
     },
     "AutoReaction": {
       "description": "make it true to react on chats",
@@ -69,7 +69,7 @@
     "STATUSVIEW": {
       "description": "make it true to auto view status and likes",
       "required": false,
-      "value": "false"
+      "value": "true"
     },
     "STATUS_MSG": {
       "description": "Status reply msg",
@@ -94,7 +94,7 @@
     "PACK_NAME": {
       "description": "put your stickers pack name",
       "required": false,
-      "value": "Princebot🎗️❣️"
+      "value": "Prince♥️"
     },
     "DL_MSG": {
       "description": "Video downloader caption",
