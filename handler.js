@@ -155,6 +155,7 @@ if (!("useDocument" in chat)) chat.useDocument = false
 if (!("viewOnce" in chat)) chat.viewOnce = false
 if (!("viewStory" in chat)) chat.viewStory = false
 if (!('antiBotClone' in chat)) chat.antiBotClone = false
+if (!('antiBot' in chat)) chat.antiBot = false
 if (!("welcome" in chat)) chat.welcome = false
 if (!("chatbot" in chat)) chat.chatbot = false
 if (!("princechat" in chat)) chat.princechat = false
@@ -183,6 +184,7 @@ antiThreads: false,
 antiTwitch: false,
 antifake: false,
 antiBotClone: false,
+antiBot: false,
 detect: true,
 autoapprove: false,
 expired: 0,
@@ -706,25 +708,28 @@ await this.sendMessage(id, { text, mentions: this.parseMention(text) })
 /**
 Delete Chat
  */
-
-
 export async function deleteUpdate(message) {
     try {
-        if (typeof process.env.antidelete === 'undefined' || process.env.antidelete.toLowerCase() === 'false') return;
-
+        const antidelete = process.env.antidelete?.toLowerCase();
+        if (!antidelete || antidelete === 'false') return;
         const { fromMe, id, participant } = message;
         if (fromMe) return;
+        const isGroup = message.isGroup;   
+        if (
+            (antidelete === 'private' && isGroup) || // Ignore group messages if 'private' is set
+            (antidelete !== 'all' && antidelete !== 'private') // Ignore invalid values
+        ) {
+            return;
+	}
         let msg = this.serializeM(this.loadMessage(id));
         if (!msg) return;
-        let chat = global.db.data.chats[msg.chat] || {};
-
         await this.reply(
-            conn.user.id, 
+            conn.user.id,
             `🚨 *Message Deleted Alert!* 🚨
-            📲 *Number:* @${participant.split`@`[0]}  
-            ✋ *Deleted Below:* 👇  
-            `.trim(), 
-            msg, 
+📲 *Number:* @${participant.split`@`[0]}  
+✋ *Deleted Below:* 👇  
+            `.trim(),
+            msg,
             { mentions: [participant] }
         );
         this.copyNForward(conn.user.id, msg, false).catch(e => console.log(e, msg));
@@ -732,6 +737,8 @@ export async function deleteUpdate(message) {
         console.error(e);
     }
 }
+
+
 
 /*
  Polling Update 
