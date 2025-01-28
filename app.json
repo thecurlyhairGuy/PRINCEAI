@@ -1,9 +1,9 @@
 {
-  "name": "PRINCEMD",
+  "name": "PRINCEAI",
   "description": "whatsapp user bot",
-  "repository": "https://github.com/DASTAGHIR/PRINCEMD",
+  "repository": "https://github.com/DASTAGHIR/PRINCEAI",
   "logo": "https://qu.ax/igJFS.png",
-  "success_url": "https://github.com/DASTAGHIR/PRINCEMD",
+  "success_url": "https://github.com/DASTAGHIR/PRINCEAI",
   "keywords": [
     "nodejs", "heroku", "bot", "urdu", "english", "indonesian", "arab", "portuguese", "italian", "french", "whatsapp",
     "termux", "superbot", "multi-device", "md", "official", "javascript", "princebot"
@@ -19,7 +19,7 @@
     "BOT_NAME": {
       "description": "put your BOT a name",
       "required": true,
-      "value": "PRINCE-MD"
+      "value": "PRINCE-BOT"
     },
     "OWNER_NUMBER": {
       "description": "put your Number and name for Owner",
@@ -37,7 +37,7 @@
       "value": "" 
     },
     "antidelete": {
-      "description": "bot will forward deleted messages if you make it true",
+      "description": "Set 'private' to forward deleted messages only from private chats, 'all' to forward from both private and group chats, or 'false' to disable this feature.",
       "required": false,
       "value": "false"
     },
@@ -79,7 +79,7 @@
     "REJECTSCALLS": {
       "description": "reject calls",
       "required": false,
-      "value": "true"
+      "value": "false"
     },
     "ANTIFAKE_USERS": {
       "description": "Add numbers to a variable. The bot will remove users from the group for these numbers. If a number isn’t in the variable, the bot will not take any action. To target all numbers, use this format: 1,2,3,4,5,6,7,8,9. ",
