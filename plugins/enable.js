@@ -596,7 +596,7 @@ default:
    ➤ Enable auto-reactions to chats
 
 ♥️ *\`${usedPrefix + command} statuslikes/likes\`*  
-   ➤ Enable auto statussaver to bot
+   ➤ Enable auto status likes to bot
 
 🥏 *\`${usedPrefix + command} statussaver\`*  
    ➤ Enable auto statussaver to bot
