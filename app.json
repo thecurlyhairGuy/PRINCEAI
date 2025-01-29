@@ -71,6 +71,11 @@
       "required": false,
       "value": "true"
     },
+    "StatusEmojies": {
+      "description": "Add your favorites emojies for status likes",
+      "required": false,
+      "value": "♥️,🤗"
+    },
     "STATUS_MSG": {
       "description": "Status reply msg",
       "required": false,
