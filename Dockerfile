@@ -1,4 +1,4 @@
-FROM node:18-buster
+FROM node:lts-buster
 
 RUN apt-get update && \
 apt-get install -y \
@@ -16,4 +16,4 @@ COPY . .
 
 EXPOSE 5000
 
-CMD ["node", "index.js"]
+CMD ["npm", "start"]
