@@ -57,6 +57,18 @@ throw false
 bot.testbot = isEnable
 break	
 
+		  case 'statuslikes':
+		  case 'statuslike':
+		  case 'slikes':
+	case 'likes':
+isAll = true
+if (!isROwner) {
+global.dfail('rowner', m, conn)
+throw false
+}
+bot.like = isEnable
+break	
+
 
 case 'statusreply':
 		  case 'replystatus':
@@ -580,13 +592,16 @@ default:
 🚫 *\`${usedPrefix + command} pmblocker\`*  
    ➤ Block spam messages in inbox
 
-💫 *\`${usedPrefix + command} autoreaction\`*  
+💫 *\`${usedPrefix + command} autoreaction/reactions\`*  
    ➤ Enable auto-reactions to chats
+
+♥️ *\`${usedPrefix + command} statuslikes/likes\`*  
+   ➤ Enable auto statussaver to bot
 
 🥏 *\`${usedPrefix + command} statussaver\`*  
    ➤ Enable auto statussaver to bot
 
-📩 *\`${usedPrefix + command} statusreply\`*  
+📩 *\`${usedPrefix + command} statusreply/sreply\`*  
    ➤ Enable auto statusreply to bot
 
 🚀 *\`${usedPrefix + command} statusview\`*  
