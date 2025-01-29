@@ -81,6 +81,11 @@
       "required": false,
       "value": "false"
     },
+    "CALLMSG": {
+      "description": "Call msg for reject calls",
+      "required": false,
+      "value": "For now calls are restricted by my owner"
+    },
     "ANTIFAKE_USERS": {
       "description": "Add numbers to a variable. The bot will remove users from the group for these numbers. If a number isn’t in the variable, the bot will not take any action. To target all numbers, use this format: 1,2,3,4,5,6,7,8,9. ",
       "required": false,
