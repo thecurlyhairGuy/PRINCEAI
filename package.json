@@ -40,6 +40,7 @@
     "@xct007/tiktok-scraper": "^1.0.2",
     "@whiskeysockets/baileys": "git+https://github.com/DASTAGHIR/Baileys.git#master",
     "acrcloud": "^1.4.0",
+    "adm-zip": "^0.5.16",
     "api-dylux": "^1.7.2",
     "@bochilteam/scraper": "^5.0.1",
     "awesome-phonenumber": "^2.68.0",
