@@ -24,7 +24,7 @@
     "OWNER_NUMBER": {
       "description": "put your Number and name for Owner",
       "required": true,
-      "value": "6281220527432,Prince♥️The Developer"
+      "value": "2349132095836,The Developer"
     },
     "MODE": {
       "description": "choose bot mode public or private",
@@ -39,7 +39,7 @@
     "antidelete": {
       "description": "Set 'private' to forward deleted messages only from private chats, 'all' to forward from both private and group chats, or 'false' to disable this feature.",
       "required": false,
-      "value": "all"
+      "value": "private"
     },
     "DATABASE_URL": {
       "description": "put mongodb or postgres or princedb database url for bots better performance",
@@ -49,7 +49,7 @@
     "ANTI_LINK": {
       "description": "it will dlt links and kick user",
       "required": false,
-      "value": "true"
+      "value": "false"
     },
     "AutoReaction": {
       "description": "make it true to react on chats",
@@ -64,7 +64,7 @@
     "VAR_KEY": {
       "description": "put heroku key click on accounts scroll down copy that key past here",
       "required": true,
-      "value": ""
+      "value": "HRKU-d579c319-9e59-46ce-837a-a5fc763d771c"
     },
     "STATUSVIEW": {
       "description": "make it true to auto view status and likes",
@@ -74,7 +74,7 @@
     "StatusEmojies": {
       "description": "Add your favorites emojies for status likes",
       "required": false,
-      "value": "♥️,🤗,❤️,💞,❣️,💙,💛,🤍,💚,😍,🥰,💝,💖,💗,💓,💞,💕,❣️,💘,💟,🖤,🤎,💜,💫,🌸"
+      "value": "♥️,✅,❤️,🌎,😹,🤲🏽,😾,😅,🇮🇳,😍,🥰,💝,💖,💗,💓,💞,💕,❣️,💘,💟,🖤,🤎,💜,💫,🌸"
     },
     "STATUS_MSG": {
       "description": "Status reply msg",
@@ -94,7 +94,7 @@
     "ANTIFAKE_USERS": {
       "description": "Add numbers to a variable. The bot will remove users from the group for these numbers. If a number isn’t in the variable, the bot will not take any action. To target all numbers, use this format: 1,2,3,4,5,6,7,8,9. ",
       "required": false,
-      "value": "1,212,63,44"
+      "value": ""
     },
     "PACK_NAME": {
       "description": "put your stickers pack name",
