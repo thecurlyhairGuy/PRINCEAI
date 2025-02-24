@@ -23,9 +23,9 @@
 
 ## 🌟 **SESSION LINKS** 🌟
 ### 🔷 SHORT SESSIONS
-[![SESSION 1](https://img.shields.io/badge/_⛔error-8A2BE2?style=for-the-badge&logo=heroku)](https://princesession-653c5b876049.herokuapp.com)
-[![SESSION 2](https://img.shields.io/badge/_⛔error-FF69B4?style=for-the-badge&logo=heroku)](https://sessionp-ffd02587aaea.herokuapp.com)  
-[![SESSION 3](https://img.shields.io/badge/_𝗦𝗘𝗦𝗦𝗜𝗢𝗡-E6E6FA?style=for-the-badge&logo=render)](https://shortsession.onrender.com)
+[![SESSION 1](https://img.shields.io/badge/_𝗦𝗘𝗦𝗦𝗜𝗢𝗡_1-8A2BE2?style=for-the-badge&logo=heroku)](https://princessession-0a4aeffc655b.herokuapp.com)
+[![SESSION 2](https://img.shields.io/badge/_𝗦𝗘𝗦𝗦𝗜𝗢𝗡_2-FF69B4?style=for-the-badge&logo=heroku)](https://shortsession-fd57a1c06fba.herokuapp.com)  
+[![SESSION 3](https://img.shields.io/badge/_𝗦𝗘𝗦𝗦𝗜𝗢𝗡_3-E6E6FA?style=for-the-badge&logo=render)](https://shortsession.onrender.com)
 
 
 ---
