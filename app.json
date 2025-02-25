@@ -61,6 +61,11 @@
       "required": false,
       "value": "false"
     },
+    "autoreactions_emojies": {
+      "description": "put your favourite emojies for AutoReactions on chats or make it empty for all default emojies",
+      "required": false,
+      "value": "💛,🤍,💗,♥️,💞"
+    },
     "VAR_APP": {
       "description": "put same app name you entered above",
       "required": true,
