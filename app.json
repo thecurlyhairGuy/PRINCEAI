@@ -26,6 +26,11 @@
       "required": true,
       "value": "6281220527432,Prince♥️The Developer"
     },
+    "owner_react_emojie": {
+      "description": "put one emojie for owner reacts",
+      "required": false,
+      "value": "🤍"
+    },
     "MODE": {
       "description": "choose bot mode public or private",
       "required": true,
