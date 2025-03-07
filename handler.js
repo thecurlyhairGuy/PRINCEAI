@@ -725,7 +725,11 @@ export async function participantsUpdate({ id, participants, action }) {
  * Handle groups update
  * @param {import('@whiskeysockets/baileys').BaileysEventMap<unknown>['groups.update']} groupsUpdate 
  */
-let lastGroupUpdate = global.db.data.lastGroupUpdate || {}; // Store previous updates
+
+global.db = global.db || {}; // Initialize global.db if undefined
+global.db.data = global.db.data || {}; // Initialize global.db.data if undefined
+global.db.data.lastGroupUpdate = global.db.data.lastGroupUpdate || {}; // Initialize lastGroupUpdate
+
 export async function groupsUpdate(groupsUpdate) {
     if (opts['self']) return;
     for (const groupUpdate of groupsUpdate) {
@@ -733,8 +737,8 @@ export async function groupsUpdate(groupsUpdate) {
         if (!id) continue;
         let chats = global.db.data.chats[id];
         if (!chats?.detect) continue;
-        if (lastGroupUpdate[id] && lastGroupUpdate[id] >= Date.now() - 30000) continue; // Skip updates within 30 seconds
-        lastGroupUpdate[id] = Date.now(); // Update timestamp
+        if (global.db.data.lastGroupUpdate[id] && global.db.data.lastGroupUpdate[id] >= Date.now() - 30000) continue; // Skip updates within 30 seconds
+        global.db.data.lastGroupUpdate[id] = Date.now(); // Update timestamp
         let text = '';
         if (groupUpdate.desc) text = (chats.sDesc || this.sDesc || conn.sDesc || 'Description changed to \n@desc').replace('@desc', groupUpdate.desc);
         if (groupUpdate.subject) text = (chats.sSubject || this.sSubject || conn.sSubject || 'The name of the group changed to \n@group').replace('@group', groupUpdate.subject);
@@ -744,6 +748,10 @@ export async function groupsUpdate(groupsUpdate) {
         await this.sendMessage(id, { text, mentions: this.parseMention(text) });
     }
 }
+
+
+
+
 
 /*Antcall*/
 
