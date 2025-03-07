@@ -720,28 +720,6 @@ export async function participantsUpdate({ id, participants, action }) {
     }
 }
 
-/**
- * Handle groups update
- * @param {import('@whiskeysockets/baileys').BaileysEventMap<unknown>['groups.update']} groupsUpdate 
- */
-
-export async function groupsUpdate(groupsUpdate) {
-    if (opts['self']) return;
-    for (const groupUpdate of groupsUpdate) {
-        const id = groupUpdate.id;
-        if (!id) continue;
-        let chats = global.db.data.chats[id] || {};
-        if (typeof chats.detect === 'undefined') chats.detect = false;
-        if (!chats?.detect) continue;
-        let text = '';
-        if (groupUpdate.desc) text = (chats.sDesc || this.sDesc || conn.sDesc || 'Description changed to \n@desc').replace('@desc', groupUpdate.desc || 'undefined');
-        if (groupUpdate.subject) text = (chats.sSubject || this.sSubject || conn.sSubject || 'The name of the group changed to \n@group').replace('@group', groupUpdate.subject || 'undefined');
-        if (groupUpdate.icon) text = (chats.sIcon || this.sIcon || conn.sIcon || 'The group icon changed to').replace('@icon', groupUpdate.icon || 'undefined');
-        if (groupUpdate.revoke) text = (chats.sRevoke || this.sRevoke || conn.sRevoke || 'Group link changes to\n@revoke').replace('@revoke', groupUpdate.revoke || 'undefined');
-        if (!text) continue;
-        await this.sendMessage(id, { text, mentions: this.parseMention(text) });
-    }
-}
 
 
 
