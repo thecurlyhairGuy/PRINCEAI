@@ -141,7 +141,7 @@ if (!('antiDiscord' in chat)) chat.antiDiscord = false
 if (!('antiThreads' in chat)) chat.antiThreads = false 
 if (!('antiTwitch' in chat)) chat.antiTwitch = false
 if (!('antifake' in chat)) chat.antifake = false
-if (!("detect" in chat)) chat.detect = true
+if (!("detect" in chat)) chat.detect = false
 if (!("autoapprove" in chat)) chat.autoapprove = false
 if (!("getmsg" in chat)) chat.getmsg = true
 if (!("isBanned" in chat)) chat.isBanned = false
@@ -185,7 +185,7 @@ antiTwitch: false,
 antifake: false,
 antiBotClone: false,
 antiBot: false,
-detect: true,
+detect: false,
 autoapprove: false,
 expired: 0,
 getmsg: true,
