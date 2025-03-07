@@ -721,9 +721,29 @@ export async function participantsUpdate({ id, participants, action }) {
 }
 
 
-
-
-
+/**
+ * Handle groups update
+ * @param {import('@whiskeysockets/baileys').BaileysEventMap<unknown>['groups.update']} groupsUpdate 
+ */
+let lastGroupUpdate = global.db.data.lastGroupUpdate || {}; // Store previous updates
+export async function groupsUpdate(groupsUpdate) {
+    if (opts['self']) return;
+    for (const groupUpdate of groupsUpdate) {
+        const id = groupUpdate.id;
+        if (!id) continue;
+        let chats = global.db.data.chats[id];
+        if (!chats?.detect) continue;
+        if (lastGroupUpdate[id] && lastGroupUpdate[id] >= Date.now() - 30000) continue; // Skip updates within 30 seconds
+        lastGroupUpdate[id] = Date.now(); // Update timestamp
+        let text = '';
+        if (groupUpdate.desc) text = (chats.sDesc || this.sDesc || conn.sDesc || 'Description changed to \n@desc').replace('@desc', groupUpdate.desc);
+        if (groupUpdate.subject) text = (chats.sSubject || this.sSubject || conn.sSubject || 'The name of the group changed to \n@group').replace('@group', groupUpdate.subject);
+        if (groupUpdate.icon) text = (chats.sIcon || this.sIcon || conn.sIcon || 'The group icon changed to').replace('@icon', groupUpdate.icon);
+        if (groupUpdate.revoke) text = (chats.sRevoke || this.sRevoke || conn.sRevoke || 'Group link changes to\n@revoke').replace('@revoke', groupUpdate.revoke);
+        if (!text) continue;
+        await this.sendMessage(id, { text, mentions: this.parseMention(text) });
+    }
+}
 
 /*Antcall*/
 
