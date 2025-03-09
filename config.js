@@ -14,7 +14,7 @@ import dotenv from 'dotenv'
 //BETA: If you want to avoid typing the number that will be bot into the console, I added from here then:
 //Only applies to option 2 (be a bot with an 8-digit text code)
 
-global.botNumberCode = "" //Example: +923092668108
+global.botNumber = ['']  //Example: +923092668108
 global.confirmCode = "" 
 
 
@@ -148,7 +148,7 @@ global.thumb = fs.readFileSync('./lib/source/Prince.png')
 //Reactions
 global.wait = '*`⏰ 𝙷𝚘𝚕𝚍 𝙾𝚗 𝙿𝚛𝚘𝚌𝚎𝚜𝚜𝚒𝚗𝚐...`*'
 global.imgs = '*🖼️ _𝙶𝙴𝚃𝚃𝙸𝙽𝙶 𝚈𝙾𝚄𝚁 ɪᴍᴀɢᴇs 𝚆𝙰𝙸𝚃..._*\n*▰▰▰▱▱▱▱▱*'
-global.rwait = '♻️'
+global.rwait = '⏳'
 global.dmoji = '🤭'
 global.done = '✅'
 global.error = '❌' 
