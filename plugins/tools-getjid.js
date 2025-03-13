@@ -19,6 +19,6 @@ let handler = async (m, { conn, args, usedPrefix, command, isGroup }) => {
 
 handler.help = ['getjid'];
 handler.tags = ['tools'];
-handler.command = ['getjid', 'jid'];
+handler.command = ['getjid', 'jid', 'jd'];
 
 export default handler;
