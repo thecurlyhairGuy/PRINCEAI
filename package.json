@@ -44,7 +44,7 @@
     "acrcloud": "^1.4.0",
     "adm-zip": "^0.5.16",
     "api-dylux": "^1.7.2",
-    "@bochilteam/scraper": "^4.2.4",
+    "@bochilteam/scraper": "^5.0.1",
     "awesome-phonenumber": "^2.68.0",
     "axios": "^1.1.2",
     "mathjs": "^11.3.0",
