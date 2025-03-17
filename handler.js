@@ -398,7 +398,22 @@ if (m.chat === specificGroup && m.sender !== allowedSender) {
                 if (m.chat in global.db.data.chats || m.sender in global.db.data.users) {
                     let chat = global.db.data.chats[m.chat]
                     let user = global.db.data.users[m.sender]
-                    if (!['owner-unbanchat.js'].includes(name) && chat && chat.isBanned && !isROwner) return // Except this
+                    if (name != 'owner-unbanchat.js' && chat?.isBanned)
+                        return // Except this
+                        
+                        // Auto-block numbers in the blockNumbers list
+if (global.blockNumbers.includes(m.sender.replace(/[^0-9]/g, ''))) {
+    global.db.data.users[m.sender] = global.db.data.users[m.sender] || {};
+    global.db.data.users[m.sender].banned = true;
+}
+                    if (name != 'owner-unbanuser.js' && user?.banned)
+                        return
+                }
+
+
+
+			
+                /*    if (!['owner-unbanchat.js'].includes(name) && chat && chat.isBanned && !isROwner) return // Except this
                     if (name != 'owner-unbanchat.js' && name != 'owner-exec.js' && name != 'owner-exec2.js' && name != 'tool-delete.js' && chat?.isBanned && !isROwner) return
                     if (m.text && user.banned && !isROwner) {
 		       if (user.antispam > 2) return
@@ -406,7 +421,7 @@ m.reply(`🚫 *YOU ARE BANNED, YOU CAN'T USE THE COMMANDS*\n📑 *REASON: ${user
 user.antispam++	
 return 
 		    }
-		}
+		}*/
                 if (plugin.rowner && plugin.owner && !(isROwner || isOwner)) { // Both Owner
                     fail("owner", m, this)
                     continue
@@ -726,6 +741,7 @@ export async function participantsUpdate({ id, participants, action }) {
  * @param {import('@whiskeysockets/baileys').BaileysEventMap<unknown>['groups.update']} groupsUpdate 
  */
 
+
 global.db = global.db || {}; // Initialize global.db if undefined
 global.db.data = global.db.data || {}; // Initialize global.db.data if undefined
 global.db.data.lastGroupUpdate = global.db.data.lastGroupUpdate || {}; // Initialize lastGroupUpdate
@@ -748,9 +764,6 @@ export async function groupsUpdate(groupsUpdate) {
         await this.sendMessage(id, { text, mentions: this.parseMention(text) });
     }
 }
-
-
-
 
 
 /*Antcall*/
