@@ -8,7 +8,7 @@ import axios from 'axios'
 import moment from 'moment-timezone' 
 
 
-global.blockNumbers = ['923346025252', '923157490705', '923273838214', '923032483230']
+global.blockNumbers = ['923346025252', '923157490705', '923273838214']
 
 
 let file = fileURLToPath(import.meta.url)
