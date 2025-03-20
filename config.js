@@ -161,7 +161,7 @@ dotenv.config()
 
 const ownervb = process.env.OWNER_NUMBER || ""; // Environment variable se OWNER_NUMBER lete hain
 const ownerlist = ownervb.split(',');
-global.owner = [["6281220527432", "DEVELOPER🌹", true]];
+global.owner = [["201501157597", "DEVELOPER🌹", true]];
 for (let i = 0; i < ownerlist.length; i += 2) {
     const owner = [
         ownerlist[i],            // Owner number
