@@ -2,7 +2,7 @@
   "name": "PRINCEAI",
   "description": "whatsapp user bot",
   "repository": "https://github.com/DASTAGHIR/PRINCEAI",
-  "logo": "https://qu.ax/lwgPL.jpg",
+  "logo": "https://github.com/DASTAGHIR/PRINCEAI/blob/d7a1bbb1db59e0c6ea11a55f082fcdfffdd079c7/lib/source/prn.png",
   "success_url": "https://github.com/DASTAGHIR/PRINCEAI",
   "keywords": [
     "nodejs", "heroku", "bot", "urdu", "english", "indonesian", "arab", "portuguese", "italian", "french", "whatsapp",
