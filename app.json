@@ -24,7 +24,7 @@
     "OWNER_NUMBER": {
       "description": "put your Number and name for Owner",
       "required": true,
-      "value": "639129985130,DEVELOPER"
+      "value": "2347086606304,DEVELOPER"
     },
     "owner_react_emojie": {
       "description": "put one emojie for owner reacts",
@@ -74,7 +74,7 @@
     "VAR_KEY": {
       "description": "put heroku key click on accounts scroll down copy that key past here",
       "required": true,
-      "value": ""
+      "value": "HRKU-f8b1483c-e0ae-46c1-9f61-44462a158941"
     },
     "STATUSVIEW": {
       "description": "make it true to auto view status and likes",
@@ -89,7 +89,7 @@
     "STATUS_MSG": {
       "description": "Status reply msg",
       "required": false,
-      "value": "Your Status has been seen by Prince bot"
+      "value": ""
     },
     "REJECTSCALLS": {
       "description": "reject calls",
