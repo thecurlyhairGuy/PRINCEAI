@@ -92,7 +92,7 @@
       "value": ""
     },
     "REJECTSCALLS": {
-      "description": "reject calls",
+      "description": "type in truemsg get call reject with message or just make it true to only reject the call",
       "required": false,
       "value": "false"
     },
