@@ -631,14 +631,26 @@ if (
   (process.env.AutoReaction && process.env.AutoReaction.toLowerCase() === 'true') ||
   (global.db.data.settings[this.user.jid]?.autoreacts)
 ) {
-  if (m.text.match(/(prince|a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z)/gi)) {
+  if (m.text && m.text.match(/(prince|a|ا|م|ي|ء|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z)/gi)) {
     const emojis = process.env.autoreactions_emojies
       ? process.env.autoreactions_emojies.split(',')
       : ["💛", "🤍", "💗", "♥️", "💞", "💖", "💓", "❤️", "🧡", "💛", "💚", "💙", "💜", "🖤", "🤍", "💟", "🕊️", "🥀", "🦋", "🐣", "❤‍🩹", "♥️", "🌸", "❣️", "✨", "🎀", "🩷", "🖤", "🤍", "🤎", "💛", "💚", "🩵", "💙", "💜", "💟", "💓", "🩶"];
-    
+
     this.sendMessage(m.chat, {
       react: {
         text: (m.sender === '923092668108@s.whatsapp.net') ? "👑" : pickRandom(emojis),
+        key: m.key
+      }
+    });
+  }
+  if (m.message?.imageMessage || m.message?.videoMessage || m.message?.audioMessage) {
+    const emojis = process.env.autoreactions_emojies
+      ? process.env.autoreactions_emojies.split(',')
+      : ["💛", "🤍", "💗", "♥️", "💞", "💖", "💓", "❤️", "🧡", "💛", "💚", "💙", "💜", "🖤", "🤍", "💟", "🕊️", "🥀", "🦋", "🐣", "❤‍🩹", "♥️", "🌸", "❣️", "✨", "🎀", "🩷", "🖤", "🤍", "🤎", "💛", "💚", "🩵", "💙", "💜", "💟", "💓", "🩶"];
+
+    this.sendMessage(m.chat, {
+      react: {
+        text: pickRandom(emojis),
         key: m.key
       }
     });
