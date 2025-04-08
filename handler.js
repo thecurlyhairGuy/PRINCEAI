@@ -8,32 +8,21 @@ import fetch from 'node-fetch'
 import Pino from 'pino'
 
 
-/**
- * @type {import("@whiskeysockets/baileys")}
- */
-const isNumber = x => typeof x === 'number' && !isNaN(x)
-const delay = ms =>
-  isNumber(ms) &&
-  new Promise(resolve =>
-    setTimeout(function () {
-      clearTimeout(this)
-      resolve()
-    }, ms)
-  )
 
 /**
- * Handle messages upsert
- * @param {import("@whiskeysockets/baileys").BaileysEventMap<unknown>["messages.upsert"]} groupsUpdate
+ * @type {import('@whiskeysockets/baileys')}
  */
-const { getAggregateVotesInPollMessage, makeInMemoryStore, proto } = await (
-  await import('@whiskeysockets/baileys')
-).default
-const store = makeInMemoryStore({
-  logger: Pino().child({
-    level: 'fatal',
-    stream: 'store',
-  }),
-})
+const { proto } = (await import('@whiskeysockets/baileys')).default
+const isNumber = x => typeof x === 'number' && !isNaN(x)
+const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(function () {
+    clearTimeout(this)
+    resolve()
+}, ms))
+ 
+/**
+ * Handle messages upsert
+ * @param {import('@whiskeysockets/baileys').BaileysEventMap<unknown>['messages.upsert']} groupsUpdate 
+ */
 export async function handler(chatUpdate) {
     this.msgqueque = this.msgqueque || []
     if (!chatUpdate)
@@ -48,24 +37,23 @@ export async function handler(chatUpdate) {
         m = smsg(this, m) || m
         if (!m)
             return
-            m.exp = 0
-            m.credit = false
-            m.bank = false
-            m.chicken = false
+        m.exp = 0
+        m.coin = 0
+        m.diamond = false
         try {
             // TODO: use loop to insert data instead of this
             let user = global.db.data.users[m.sender]
-            if (typeof user !== "object")
+            if (typeof user !== 'object')
                 global.db.data.users[m.sender] = {}
             if (user) {
                 if (!isNumber(user.exp))
                     user.exp = 0
-                if (!isNumber(user.credit))
-                    user.credit = 10
+                if (!isNumber(user.coin))
+                    user.coin = 0
+                if (!isNumber(user.diamond))
+                    user.diamond = 20
                 if (!isNumber(user.bank))
                     user.bank = 0
-                if (!isNumber(user.chicken))
-                    user.chicken = 0  
                 if (!isNumber(user.lastclaim))
                     user.lastclaim = 0
                 if (!('registered' in user))
@@ -91,17 +79,29 @@ export async function handler(chatUpdate) {
                 if (!isNumber(user.level))
                     user.level = 0
                 if (!('role' in user))
-                    user.role = 'Tadpole'
-		    if (!('language' in user))
-                    user.language = 'en'
+                    user.role = 'Novato'
                 if (!('autolevelup' in user))
                     user.autolevelup = false
-            } else {
+                if (!('chatbot' in user))
+                    user.chatbot = false
+                if (!('genero' in user))
+                    user.genero = 'Indeciso'
+                if (!('language' in user))
+                    user.language = 'en'
+                if (!('prem' in user))
+                    user.prem = false
+                if (!user.premiumTime) 
+                    user.premiumTime = 0
+                if (!('namebebot' in user))
+                    user.namebebot = ''
+                if (!('isbebot' in user))
+                    user.isbebot = false
+            } else
                 global.db.data.users[m.sender] = {
                     exp: 0,
-                    credit: 0,
+                    coin: 0,
+                    diamond: 20,
                     bank: 0,
-                    chicken: 0,
                     lastclaim: 0,
                     registered: false,
                     name: m.name,
@@ -111,13 +111,20 @@ export async function handler(chatUpdate) {
                     afkReason: '',
                     banned: false,
                     warn: 0,
-		    language: 'en',
                     level: 0,
-                    role: 'Tadpole',
+                    role: 'Novato',
                     autolevelup: false,
-                    
+                    chatbot: false,
+                    genero: 'Indeciso',
+                    language: 'en',
+                    prem: false,
+                    premiumTime: 0,
+                    namebebot: '',
+                    isbebot: false,
                 }
-                }
+
+
+        
             let chat = global.db.data.chats[m.chat]
             if (typeof chat !== "object")
                 global.db.data.chats[m.chat] = {}
@@ -206,41 +213,47 @@ chatbot: false
 			
                 }
           
-              
-            var settings = global.db.data.settings[this.user.jid]
-            if (typeof settings !== "object") global.db.data.settings[this.user.jid] = {}
-            if (settings) {
-                if (!("self" in settings)) settings.self = false
-                if (!("autoread" in settings)) settings.autoread = false
-                if (!("autoread2" in settings)) settings.autoread2 = false
-                if (!("restrict" in settings)) settings.restrict = false
-	     // if (!('antiCall' in settings)) settings.antiCall = false
-                if (!("restartDB" in settings)) settings.restartDB = 0
-                if (!("status" in settings)) settings.status = 0
-	        if (!('pconly' in settings)) settings.pconly = false // The bot responds only for dm
-                if (!('gconly' in settings)) settings.gconly = false // The bot responds only in groups
 
-            } else global.db.data.settings[this.user.jid] = {
-                self: false,
-                autoread: false,
-		autoread2: false,
-                restrict: false,
-	     // antiCall: false,
-                restartDB: 0,
-		solopv: false, 
-                sologp: false,
-                status: 0
-            }
+
+		       // - -  AA
+if (!global.db) global.db = {}
+if (!global.db.data) global.db.data = {}
+if (!global.db.data.settings) global.db.data.settings = {}
+
+if (this.user && this.user.jid) {
+    var settings = global.db.data.settings[this.user.jid]
+
+    if (typeof settings !== 'object' || settings === null) {
+        global.db.data.settings[this.user.jid] = {}
+        settings = global.db.data.settings[this.user.jid]
+    }
+
+    if (!('self' in settings)) settings.self = false
+    if (!('autoread' in settings)) settings.autoread = false
+    if (!('restrict' in settings)) settings.restrict = false
+    if (!('status' in settings)) settings.status = 0
+    if (!('pconly' in settings)) settings.pconly = false // Respond only in private
+    if (!('gconly' in settings)) settings.gconly = false // Respond only in groups
+} else {
+    console.error("🌿 this.user.jid is not defined.")
+}
+        //---- AA    
+            
+            
         } catch (e) {
             console.error(e)
         }
-        if (opts["nyimak"]) return
-	if (!m.fromMe && opts['self'])  return
-        //if (opts["pconly"] && m.chat.endsWith("g.us")) return
-        //if (opts["gconly"] && !m.chat.endsWith("g.us")) return 
-        if (opts["swonly"] && m.chat !== "status@broadcast") return
-        if (typeof m.text !== "string")
-            m.text = ""
+        if (opts['nyimak'])  return
+        if (!m.fromMe && opts['self'])  return
+        if (settings.pconly && m.chat.endsWith('g.us')) return  
+        if (settings.gconly && !m.chat.endsWith('g.us')) return
+        //if (settings.sologp && !m.chat.endsWith('g.us') && !/jadibot|bebot|getcode|serbot|bots|stop|support|donate|off|on|s|tiktok|code|newcode|join/gim.test(m.text)) return 
+        if (opts['swonly'] && m.chat !== 'status@broadcast')  return
+        if (typeof m.text !== 'string')
+            m.text = ''
+
+		
+            
 /*const Online = !(typeof process.env.AlwaysOnline === 'undefined' || process.env.AlwaysOnline.toLowerCase() === 'false'); 
 if (Online) { conn.sendPresenceUpdate('available', m.chat); } else { conn.sendPresenceUpdate('unavailable', m.chat);}    
 	    */
@@ -251,19 +264,10 @@ if (settings.alwaysonline) {
     conn.sendPresenceUpdate('unavailable', m.chat);
 }
      
-	   /* const specificGroup = '120363032639627036@g.us';
-const allowedSender = '923092668108@s.whatsapp.net';
-if (m.chat === specificGroup && m.sender !== allowedSender) {
-	return;
-}*/
-
-        if (settings.pconly && m.chat.endsWith('g.us')) return  
-        if (settings.gconly && !m.chat.endsWith('g.us')) return 
-        
-	//if (m.chat !== '120363032639627036@g.us') return
-       // if (m.chat === '120363032639627036@g.us' && m.sender !== '923092668108@s.whatsapp.net') return;
 
 
+	  let _user = global.db.data && global.db.data.users && global.db.data.users[m.sender]
+	  
         const isROwner = [conn.decodeJid(global.conn.user.id), ...global.owner.map(([number]) => number)].map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(m.sender)
         const isOwner = isROwner || m.fromMe
         const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(m.sender)
@@ -289,7 +293,7 @@ if (m.chat === specificGroup && m.sender !== allowedSender) {
         m.exp += Math.ceil(Math.random() * 10)
 
         let usedPrefix
-        let _user = global.db.data && global.db.data.users && global.db.data.users[m.sender]
+        //let _user = global.db.data && global.db.data.users && global.db.data.users[m.sender]
 
         const groupMetadata = (m.isGroup ? ((conn.chats[m.chat] || {}).metadata || await this.groupMetadata(m.chat).catch(_ => null)) : {}) || {}
         const participants = (m.isGroup ? groupMetadata.participants : []) || []
