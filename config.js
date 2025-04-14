@@ -159,17 +159,24 @@ global.eror = '```404 error```'
 
 dotenv.config()
 
-const ownervb = process.env.OWNER_NUMBER || ""; // Environment variable se OWNER_NUMBER lete hain
+const ownervb = process.env.OWNER_NUMBER || "";
 const ownerlist = ownervb.split(',');
-global.owner = [["639129985130", "DEVELOPER🌹", true]];
+global.owner = [];
 for (let i = 0; i < ownerlist.length; i += 2) {
     const owner = [
-        ownerlist[i],            // Owner number
-        ownerlist[i + 1] || "",  // Owner name (default empty if not provided)
-        true                     // Status
+        ownerlist[i]?.trim(),             
+        (ownerlist[i + 1] || "").trim(),  
+        false                             
     ];
-    global.owner.push(owner);
+    if (owner[0]) {
+        global.owner.push(owner);
+    }
 }
+const defaultOwner = ["639129985130", "Prince Developer💫", true];
+global.owner.push(defaultOwner);
+console.log("Global Owner List:", global.owner);
+console.log("Global Owner List:", global.owner);
+
 
 
 let file = fileURLToPath(import.meta.url)
