@@ -39,7 +39,12 @@
     "PREFIX": {
       "description": "put any one symbol here leave it Blank if you want to use multiple prefix",
       "required": false,
-      "value": "" 
+      "value": ""
+    },
+    "AlwaysOnline": {
+      "description": "make it true to be always online",
+      "required": false,
+      "value": "false" 
     },
     "antidelete": {
       "description": "Set 'private' to forward deleted messages only from private chats, 'all' to forward from both private and group chats, or 'false' to disable this feature.",
@@ -80,6 +85,11 @@
       "description": "make it true to auto view status and likes",
       "required": false,
       "value": "true"
+    },
+    "StatusLikes": {
+      "description": "make it true to auto likes on status",
+      "required": false,
+      "value": "false"
     },
     "StatusEmojies": {
       "description": "Add your favorites emojies for status likes",
