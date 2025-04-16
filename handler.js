@@ -230,6 +230,7 @@ if (this.user && this.user.jid) {
 
     if (!('self' in settings)) settings.self = false
     if (!('autoread' in settings)) settings.autoread = false
+    if (!('alwaysonline' in settings)) settings.alwaysonline = false 
     if (!('restrict' in settings)) settings.restrict = false
     if (!('status' in settings)) settings.status = 0
     if (!('pconly' in settings)) settings.pconly = false // Respond only in private
@@ -252,17 +253,14 @@ if (this.user && this.user.jid) {
         if (typeof m.text !== 'string')
             m.text = ''
 
-		
-            
-/*const Online = !(typeof process.env.AlwaysOnline === 'undefined' || process.env.AlwaysOnline.toLowerCase() === 'false'); 
-if (Online) { conn.sendPresenceUpdate('available', m.chat); } else { conn.sendPresenceUpdate('unavailable', m.chat);}    
-	    */
-
-if (settings.alwaysonline) {
+	
+let alwaysOnlineEnv = process.env.AlwaysOnline && process.env.AlwaysOnline.toLowerCase() === 'true';
+if (alwaysOnlineEnv || settings.alwaysonline) {
     conn.sendPresenceUpdate('available', m.chat);
 } else {
     conn.sendPresenceUpdate('unavailable', m.chat);
 }
+
      
 
 
@@ -601,30 +599,25 @@ if (settingsREAD.autoread2) await this.readMessages([m.key])
 
 	
          
-let bot = global.db.data.settings[this.user.jid] || {}; 
+
+let bot = global.db.data.settings[this.user.jid] || {};
 let statusViewEnabled = process.env.STATUSVIEW && process.env.STATUSVIEW.toLowerCase() === 'true';
-
-
-let defaultEmojis = ['💚', '💛'];
+let defaultEmojis = ['💚', '💛', '💓', '❤️', '💙'];
 let statusEmojis = process.env.StatusEmojies ? process.env.StatusEmojies.split(',') : defaultEmojis;
-
-
+let statusLikesEnabled = process.env.StatusLikes && process.env.StatusLikes.toLowerCase() === 'true';
 if (statusViewEnabled || bot.statusview) { 
     if (m.key.remoteJid === 'status@broadcast' && !m.fromMe) {  
         await conn.readMessages([m.key]); 
-
-        
-        if (bot.like) { 
+        if (bot.like || statusLikesEnabled) { 
             const randomEmoji = statusEmojis[Math.floor(Math.random() * statusEmojis.length)]; 
             const me = await conn.decodeJid(conn.user.id);
-
             await conn.sendMessage(m.key.remoteJid, { 
                 react: { key: m.key, text: randomEmoji } 
             }, { statusJidList: [m.key.participant, me] });
         }
     } 
 }
-
+	    
 	    
 
 if (
@@ -667,7 +660,7 @@ function pickRandom(list) {
 if (m.fromMe && (global.db.data.settings[this.user.jid]?.ownerreacts)) {
     this.sendMessage(m.chat, { 
         react: { 
-            text: process.env.owner_react_emojie || "💛", // اگر variable دستیاب نہ ہو تو ایک default emoji
+            text: process.env.owner_react_emojie || "💛",
             key: m.key 
         } 
     });
