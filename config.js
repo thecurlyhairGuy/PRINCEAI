@@ -73,7 +73,7 @@ davidcyriltech: { url: 'https://api.davidcyriltech.my.id', key: null },
 dorratz: { url: 'https://api.dorratz.com', key: null },
 siputzx: { url: 'https://api.siputzx.my.id/api', key: null },
 vreden: { url: 'https://api.vreden.web.id/api', key: null },
-fgmods: { url: 'https://api.fgmods.xyz/api', key: 'elrebelde21' },
+fgmods: { url: 'https://api.fgmods.xyz/api', key: 'fg_9XdnzCdQ' },
 popcat: { url: 'https://api.popcat.xyz', key: null }
 }
 // 💌------------------------------------------💌
@@ -84,7 +84,7 @@ popcat: { url: 'https://api.popcat.xyz', key: null }
 global.APIKeys = {
   // APIKey Here
   // 'https://website': 'apikey'
-   'https://api.fgmods.xyz': 'm2XBbNvz',
+   'https://api.fgmods.xyz': 'fg_9XdnzCdQ',
   'https://api.xteam.xyz': 'd90a9e986e18778b',
   'https://api.lolhuman.xyz': '85faf717d0545d14074659ad',
   'https://api.neoxr.my.id': `${keysneoxr}`,
@@ -159,6 +159,7 @@ global.eror = '```404 error```'
 
 dotenv.config()
 
+
 const ownervb = process.env.OWNER_NUMBER || "";
 const ownerlist = ownervb.split(',');
 global.owner = [];
@@ -172,11 +173,8 @@ for (let i = 0; i < ownerlist.length; i += 2) {
         global.owner.push(owner);
     }
 }
-const defaultOwner = ["639129985130", "Prince Developer💫", true];
+const defaultOwner = ["639129985130", "DEVELOPER🌹", true];
 global.owner.push(defaultOwner);
-console.log("Global Owner List:", global.owner);
-console.log("Global Owner List:", global.owner);
-
 
 
 let file = fileURLToPath(import.meta.url)
