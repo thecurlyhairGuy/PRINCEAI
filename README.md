@@ -22,10 +22,10 @@
 ---
 
 ## 🌟 **SESSION LINKS** 🌟
-### 🔷 QR CODE 
-[![SESSION 1](https://img.shields.io/badge/_QR_CODE_1-8A2BE2?style=for-the-badge&logo=heroku)](https://pairgds-b8f1c801cf10.herokuapp.com)
-[![SESSION 2](https://img.shields.io/badge/_QR_CODE_2-FF69B4?style=for-the-badge&logo=heroku)](https://hidden-katlin-mrgds-d525e1f7.koyeb.app)  
-[![SESSION 3](https://img.shields.io/badge/_QR_CODE_3-E6E6FA?style=for-the-badge&logo=render)](https://princesesionn.onrender.com)
+### 🔷 PAIR CODE 
+[![SESSION 1](https://img.shields.io/badge/_PAIR_CODE_1-8A2BE2?style=for-the-badge&logo=heroku)](https://familiar-denys-shoroking38-771843ee.koyeb.app)
+[![SESSION 2](https://img.shields.io/badge/_PAIR_CODE_2-FF69B4?style=for-the-badge&logo=heroku)](prince-bot-pair-code.koyeb.app)  
+[![SESSION 3](https://img.shields.io/badge/_PAIR_CODE_3-E6E6FA?style=for-the-badge&logo=render)](https://shortsession.onrender.com)
 
 
 ---
