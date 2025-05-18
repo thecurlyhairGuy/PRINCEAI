@@ -36,6 +36,16 @@
       "required": true,
       "value": "public"
     },
+    "BUSINESS_MODE": {
+      "description": "If your deploying bot in WhatsApp Bussinus then make it 👉🏻 true",
+      "required": true,
+      "value": "false"
+    },
+    "MENU_IMAGE": {
+      "description": "put image url,url 👈🏻 like this as much as you want for menu image or leave it blank for default images",
+      "required": true,
+      "value": ""
+    },
     "PREFIX": {
       "description": "put any one symbol here leave it Blank if you want to use multiple prefix",
       "required": false,
@@ -138,4 +148,4 @@
       "url": "https://github.com/heroku/heroku-buildpack-activestorage-preview"
     }
   ]
-}
+  }
