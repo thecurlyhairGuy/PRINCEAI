@@ -43,7 +43,7 @@
     },
     "MENU_IMAGE": {
       "description": "put image url,url 👈🏻 like this as much as you want for menu image or leave it blank for default images",
-      "required": true,
+      "required": false,
       "value": ""
     },
     "PREFIX": {
