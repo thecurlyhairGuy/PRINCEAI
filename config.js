@@ -48,7 +48,7 @@ global.openai_org_id = 'HITjoN7H8pCwoncEB9e3fSyW'
 //CONFIG VARS. Do not touch them⚠️
 
   global.vidcap = process.env.DL_MSG
-
+  global.business = process.env.BUSINESS_MODE === 'true' || false
 
 //💌------------------------------------------💌
 
