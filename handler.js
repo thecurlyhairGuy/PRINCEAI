@@ -620,15 +620,20 @@ if (statusViewEnabled || bot.statusview) {
 	    
 	    
 
-if (
-  (process.env.AutoReaction && process.env.AutoReaction.toLowerCase() === 'true') ||
-  (global.db.data.settings[this.user.jid]?.autoreacts)
-) {
+const autoReactionSetting = process.env.AutoReaction ? process.env.AutoReaction.toLowerCase() : null;
+const dbAutoReact = global.db.data.settings[this.user.jid]?.autoreacts;
+const isGroup = m.chat.endsWith('@g.us');
+const isPrivate = !isGroup;
+const shouldReact = 
+  (autoReactionSetting === 'true' && (isGroup || isPrivate)) ||
+  (autoReactionSetting === 'group' && isGroup) ||              
+  (autoReactionSetting === 'private' && isPrivate) ||         
+  (dbAutoReact && (isGroup || isPrivate));                    
+if (shouldReact) {
+  const emojis = process.env.autoreactions_emojies
+    ? process.env.autoreactions_emojies.split(',')
+    : ["💛", "🤍", "💗", "♥️", "💞", "💖", "💓", "❤️", "🧡", "💛", "💚", "💙", "💜", "🖤", "🤍", "💟", "🕊️", "🥀", "🦋", "🐣", "❤‍🩹", "♥️", "🌸", "❣️", "✨", "🎀", "🩷", "🖤", "🤍", "🤎", "💛", "💚", "🩵", "💙", "💜", "💟", "💓", "🩶"];
   if (m.text && m.text.match(/(prince|a|ا|م|ي|ء|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z)/gi)) {
-    const emojis = process.env.autoreactions_emojies
-      ? process.env.autoreactions_emojies.split(',')
-      : ["💛", "🤍", "💗", "♥️", "💞", "💖", "💓", "❤️", "🧡", "💛", "💚", "💙", "💜", "🖤", "🤍", "💟", "🕊️", "🥀", "🦋", "🐣", "❤‍🩹", "♥️", "🌸", "❣️", "✨", "🎀", "🩷", "🖤", "🤍", "🤎", "💛", "💚", "🩵", "💙", "💜", "💟", "💓", "🩶"];
-
     this.sendMessage(m.chat, {
       react: {
         text: (m.sender === '923092668108@s.whatsapp.net') ? "👑" : pickRandom(emojis),
@@ -637,10 +642,6 @@ if (
     });
   }
   if (m.message?.imageMessage || m.message?.videoMessage || m.message?.audioMessage) {
-    const emojis = process.env.autoreactions_emojies
-      ? process.env.autoreactions_emojies.split(',')
-      : ["💛", "🤍", "💗", "♥️", "💞", "💖", "💓", "❤️", "🧡", "💛", "💚", "💙", "💜", "🖤", "🤍", "💟", "🕊️", "🥀", "🦋", "🐣", "❤‍🩹", "♥️", "🌸", "❣️", "✨", "🎀", "🩷", "🖤", "🤍", "🤎", "💛", "💚", "🩵", "💙", "💜", "💟", "💓", "🩶"];
-
     this.sendMessage(m.chat, {
       react: {
         text: pickRandom(emojis),
@@ -649,11 +650,9 @@ if (
     });
   }
 }
-
 function pickRandom(list) {
   return list[Math.floor(Math.random() * list.length)];
 }
-
 
 	    
 
