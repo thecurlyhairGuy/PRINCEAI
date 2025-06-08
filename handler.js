@@ -770,6 +770,7 @@ await this.sendMessage(id, { text, mentions: this.parseMention(text) })
 /**
 Delete Chat
  */
+
 export async function deleteUpdate(message) {
     try {
         const antidelete = process.env.antidelete?.toLowerCase();
@@ -778,17 +779,24 @@ export async function deleteUpdate(message) {
         if (fromMe) return;
         const isGroup = message.isGroup;   
         if (
-            (antidelete === 'private' && isGroup) || // Ignore group messages if 'private' is set
-            (antidelete !== 'all' && antidelete !== 'private') // Ignore invalid values
+            (antidelete === 'private' && isGroup) || 
+            (antidelete !== 'all' && antidelete !== 'private') 
         ) {
             return;
-	}
+        }
         let msg = this.serializeM(this.loadMessage(id));
         if (!msg) return;
+        const deleteTime = new Date().toLocaleString('en-US', {
+            dateStyle: 'medium',
+            timeStyle: 'short',
+            timeZone: 'Asia/Karachi' 
+        });
+
         await this.reply(
             conn.user.id,
             `🚨 *Message Deleted Alert!* 🚨
 📲 *Number:* @${participant.split`@`[0]}  
+⏰ *Deleted At:* ${deleteTime}
 ✋ *Deleted Below:* 👇  
             `.trim(),
             msg,
@@ -799,8 +807,6 @@ export async function deleteUpdate(message) {
         console.error(e);
     }
 }
-
-
 
 /*
  Polling Update 
