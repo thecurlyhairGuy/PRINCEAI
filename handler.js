@@ -1,38 +1,36 @@
-import { smsg } from './lib/simple.js'
-import { format } from 'util'
-import { fileURLToPath } from 'url'
-import path, { join } from 'path'
-import { unwatchFile, watchFile } from 'fs'
-import chalk from 'chalk'
-import fetch from 'node-fetch'
-import Pino from 'pino'
-
-
+import { generateWAMessageFromContent } from '@whiskeysockets/baileys';
+import { smsg } from './lib/simple.js';
+import { format } from 'util';
+import { fileURLToPath } from 'url';
+import path, { join } from 'path';
+import { unwatchFile, watchFile } from 'fs';
+import fs from 'fs';
+import chalk from 'chalk';
+import ws from 'ws';
+import fetch from 'node-fetch';
+import Pino from 'pino';
 
 /**
  * @type {import('@whiskeysockets/baileys')}
  */
-const { proto } = (await import('@whiskeysockets/baileys')).default
-const isNumber = x => typeof x === 'number' && !isNaN(x)
-const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(function () {
-    clearTimeout(this)
-    resolve()
-}, ms))
- 
+const { proto } = (await import('@whiskeysockets/baileys')).default;
+const isNumber = x => typeof x === 'number' && !isNaN(x);
+const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(resolve, ms));
+
 /**
  * Handle messages upsert
- * @param {import('@whiskeysockets/baileys').BaileysEventMap<unknown>['messages.upsert']} groupsUpdate 
+ * @param {import('@whiskeysockets/baileys').BaileysEventMap<unknown>['messages.upsert']} chatUpdate 
  */
 export async function handler(chatUpdate) {
-    this.msgqueque = this.msgqueque || []
-    if (!chatUpdate)
-        return
-    this.pushMessage(chatUpdate.messages).catch(console.error)
-    let m = chatUpdate.messages[chatUpdate.messages.length - 1]
-    if (!m)
-        return
-    if (global.db.data == null)
-        await global.loadDatabase()
+    this.msgqueque = this.msgqueque || [];
+    this.uptime = this.uptime || Date.now();
+    if (!chatUpdate) return;
+    this.pushMessage(chatUpdate.messages).catch(console.error);
+    let m = chatUpdate.messages[chatUpdate.messages.length - 1];
+    if (!m) return;
+    if (global.db.data == null) await global.loadDatabase();
+}
+
     try {
         m = smsg(this, m) || m
         if (!m)
